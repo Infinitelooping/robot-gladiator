@@ -53,6 +53,7 @@ var fight = function(enemy) {
             
             if (enemy.health <= 0) {
                 window.alert(enemy.name + " has died!");
+                playerInfo.money = playerInfo.money + 5;
                 break;
             } 
             else {
@@ -133,21 +134,18 @@ var endGame = function() {
 
 //shop
 var shop = function() {
-    var shopOptionPrompt = window.prompt(
-        "Would you like to REFILL your health, UPGRADE your attack, or LEAVE the store? Please enter one: 'REFILL', 'UPGRADE', or 'LEAVE' to make a choice."
-    );
+    var shopOptionPrompt = parseInt(window.prompt(
+        "Would you like to REFILL your health, UPGRADE your attack, or LEAVE the store? Please enter one: '1 to refill', '2 to upgrade', or '3 to leave'."
+    ));
     //using a switch instead of if/else if to go down a user path
     switch (shopOptionPrompt) {
-        case "refill":
-        case "REFILL":
+        case 1:
             playerInfo.refillHealth();
             break;
-        case "upgrade":
-        case "UPGRADE":
+        case 2:
             playerInfo.upgradeAttack();
             break;
-        case "leave":
-        case "LEAVE":
+        case 3:
           window.alert("Leaving the store.");
       
           // do nothing, so function will end
