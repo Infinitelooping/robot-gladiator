@@ -5,7 +5,7 @@ var playerAttack = 10;
 var playerMoney = 10;
 
 var enemyNames = ["Roborto", "Amy Android", "Robo Trumble"];
-var enemyHealth = 50;9
+var enemyHealth = 50;
 var enemyAttack = 12;
 
 //could also be written "function fight() {  }"
@@ -23,7 +23,7 @@ var fight = function(enemyName) {
             if (confirmSkip) {
                 window.alert(playerName + " has decided to skip this fight. Goodbye!");
                 // subtract money from playerMoney for skipping
-                playerMoney = playerMoney - 10;
+                playerMoney = Math.max(0, playerMoney - 10);
                 console.log("playerMoney", playerMoney);
                 break;
             }
@@ -67,16 +67,21 @@ var fight = function(enemyName) {
 
 //helper function for when the player attacks Robot
 var playerAttacks = function() {
-    enemyHealth = enemyHealth - playerAttack;
+    // generate random damage value based on player's attack power
+    var damage = randomNumber(playerAttack - 3, playerAttack);
+
+    enemyHealth = Math.max(0, enemyHealth - damage);
 }
 //helper function for when th enemy robot attacks player
 var enemyAttacks = function() {
-    playerHealth = playerHealth - enemyAttack;
+    var damage = randomNumber(enemyAttack - 3, enemyAttack);
+
+    playerHealth = Math.max(0, playerHealth - damage);
 }
 
 //start game function
 var startGame = function(){
-    // reseting player stats
+    // resetting player stats
     playerHealth = 100;
     playerAttack = 10;
     playerMoney = 10;
@@ -84,8 +89,11 @@ var startGame = function(){
     for(var i = 0; i < enemyNames.length; i++) {
         if (playerHealth >= 0) {
             window.alert("Welcome to Robot Gladiators! Round" + (i +1));
+
             var pickedEnemyName = enemyNames[i];
-            enemyHealth = 50;
+
+            enemyHealth = randomNumber(40, 60);
+
             fight(pickedEnemyName);
 
             //shopping
@@ -171,6 +179,13 @@ var shop = function() {
           shop();
           break;
       }
+};
+
+//random math function
+var randomNumber = function(min, max) {
+  var value = Math.floor(Math.random() * (max - min + 1) + min);
+
+  return value;
 };
 
 // calling the game when the page loads
