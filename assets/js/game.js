@@ -1,4 +1,14 @@
-
+// get player name
+var getPlayerName = function() {
+    var name = "";
+  
+    while (name === "" || name === null) {
+        name = prompt("What is your robot's name?");
+      }
+  
+    console.log("Your robot's name is " + name);
+    return name;
+  };
 
 //random math function
 var randomNumber = function(min, max) {
@@ -77,6 +87,7 @@ var startGame = function(){
     for(var i = 0; i < enemyInfo.length; i++) {
         if (playerInfo.health >= 0) {
             window.alert("Welcome to Robot Gladiators! Round" + (i +1));
+            debugger;
 
             var pickedEnemyObj = enemyInfo[i];
 
@@ -113,7 +124,7 @@ var endGame = function() {
     var playAgainConfirm = window.confirm("Would you like to play again?")
 
     if (playAgainConfirm){
-        startGame();
+        //startGame();
     } else {
         window.alert("Thank you for playing Robot Gladiators! Come back soon!");
       }
@@ -150,7 +161,7 @@ var shop = function() {
 };
 
 var playerInfo = {
-    name: window.prompt("What is your robot's name?"),
+    name: getPlayerName(),
     health: 100,
     attack: 10,
     money: 10,
