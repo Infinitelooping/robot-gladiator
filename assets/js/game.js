@@ -20,11 +20,12 @@ var randomNumber = function(min, max) {
 //could also be written "function fight() {  }"
 var fight = function(enemy) {
 
-    while(enemy.health > 0 && playerInfo.health) {
+    while(enemy.health > 0 && playerInfo.health > 0) {
         var promptFight = window.prompt("Would you like to fight or skip this battle? Enter FIGHT or SKIP.");
+        promptFight = promptFight.toLowerCase();
         console.log(promptFight);
 
-        if (promptFight === "skip" || promptFight === "SKIP") {
+        if (promptFight == "skip"){
             // confirm player wants to skip
             var confirmSkip = window.confirm("Are you sure you'd like to quit?");
 
@@ -39,7 +40,7 @@ var fight = function(enemy) {
            
         } 
     
-        if (promptFight === "fight" || promptFight === "FIGHT") {
+        if (promptFight == "fight") {
             
                 // generate random damage value based on player's attack power
                 var damage = randomNumber(playerInfo.attack - 3, playerInfo.attack);
