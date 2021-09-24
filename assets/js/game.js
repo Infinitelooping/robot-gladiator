@@ -53,7 +53,7 @@ var fight = function(enemy) {
             
             if (enemy.health <= 0) {
                 window.alert(enemy.name + " has died!");
-                playerInfo.money = playerInfo.money + 5;
+                playerInfo.money = playerInfo.money + 20;
                 break;
             } 
             else {
